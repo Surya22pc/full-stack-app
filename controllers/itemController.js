@@ -22,7 +22,7 @@ const addItemController = async (req, res) => {
   }
 };
 
-//update item
+//update items
 const editItemController = async (req, res) => {
   try {
     const { itemId } = req.body;
