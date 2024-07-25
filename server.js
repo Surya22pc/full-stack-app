@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotanv = require("dotenv");
 const { bgCyan } = require("colors");
+const path=require('path')
 require("colors");
 const connectDb = require("./config/config");
 //dotenv config
@@ -24,6 +25,12 @@ app.use(morgan("dev"));
 app.use("/api/items", require("./routes/itemRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/bills", require("./routes/billsRoute"));
+
+//static files
+app.use(express.static(path.join(__dirname,'./client/build')))
+app.get('*',function(req,res){
+  res.sendFile(path.join(__dirname,'./client/build/index.html'))
+})
 
 //port
 const PORT = process.env.PORT || 8080;
